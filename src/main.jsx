@@ -8,7 +8,7 @@ import ContactUs from "./components/contactUs.jsx";
 import NotFound from "./components/notFound.jsx";
 import App from "./App.jsx";
 
-import "./index.css";
+import "./css/index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
