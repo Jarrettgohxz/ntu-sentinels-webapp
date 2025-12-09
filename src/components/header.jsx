@@ -1,40 +1,56 @@
-function Header() {
-  return (
-    <nav class="navbar navbar-expand-md navbar-custom navbar-dark">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapsibleNavbar"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+import { Link } from "react-router";
 
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav nav-custom mx-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/">
-              Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/about-us">
-              About Us
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/events">
-              Events
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contact-us">
-              Contact Us
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+import { RiMenu2Fill, RiCloseFill } from "react-icons/ri";
+
+function Header() {
+  const handleOpenMenu = () => {
+    const menuList = document.querySelector(".main-nav");
+    menuList.classList.add("is-open");
+  };
+
+  const handleMenuClose = () => {
+    const menuList = document.querySelector(".main-nav");
+    menuList.classList.remove("is-open");
+  };
+
+  return (
+    <>
+      <nav className="main-nav">
+        <div className="main-nav-inner d-flex flex-column">
+          <div className="menu-title">Menu</div>
+
+          <div className="menu-close-icon-container" onClick={handleMenuClose}>
+            <RiCloseFill className="menu-close-icon" color="white" />
+          </div>
+
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about-us">
+                About Us
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/events">
+                Events
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/contact-us">
+                Contact Us
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <RiMenu2Fill className="icon-menu" onClick={handleOpenMenu} />
+      <div className="divider" />
+    </>
   );
 }
 

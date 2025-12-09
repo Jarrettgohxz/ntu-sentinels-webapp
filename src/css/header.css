@@ -1,21 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
-
 /* Header background */
 header {
   background-color: #d9d9d9;
   padding-bottom: 10px; /* space for links */
 }
 
+.main-nav {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row !important;
+}
+
 /* Navbar links */
-nav.navbar a.nav-link {
+nav.main-nav .nav-link {
   font-family: "Montserrat", sans-serif;
-  font-weight: 500; /* default */
-  font-size: 18px; /* bigger text */
-  color: #682fc4 !important; /* default light mode color */
-  margin: 0 25px; /* space between links */
-  transition: color 0.1s, font-weight 0.1s;
-  text-decoration: none;
-  padding-top: 10px; /* move links slightly lower */
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--main-color) !important; /* default light mode color */
+  margin: 0 25px;
 }
 
 /* Dark mode */
@@ -48,4 +56,106 @@ hr {
 
 body.dark-mode header hr {
   background-color: #29192e; /* dark mode color */
+}
+
+.navbar-nav .nav-link {
+  text-decoration: none;
+}
+
+.navbar-nav .nav-link:hover {
+  text-decoration: underline;
+}
+
+.icon-menu {
+  visibility: hidden;
+  color: var(--main-color) !important;
+  font-size: 2rem;
+  position: absolute;
+  right: 3rem;
+  top: 3rem;
+}
+
+.icon-menu:hover {
+  cursor: pointer;
+}
+
+.divider {
+  width: 100%;
+  height: 0.2rem;
+  background-color: var(--color-alt);
+}
+
+.menu-title {
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 2.4rem;
+  text-align: center;
+  display: none;
+}
+
+.menu-close-icon {
+  color: whitesmoke !important;
+}
+
+.menu-close-icon-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  border-radius: 50%;
+  background-color: var(--main-color) !important;
+  cursor: pointer;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+@media (max-width: 1024px) {
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    background-color: var(--bg-color);
+  }
+
+  .main-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.25s ease;
+  }
+
+  .main-nav-inner {
+    padding-top: 10rem;
+  }
+
+  .navbar-nav {
+    flex-direction: column !important;
+  }
+
+  .menu-title {
+    display: inline-block;
+  }
+
+  .divider {
+    visibility: hidden;
+  }
+
+  .icon-menu {
+    visibility: visible;
+  }
+
+  .navbar-nav .nav-item {
+    text-align: center;
+  }
+
+  .menu-close-icon-container {
+    display: flex;
+  }
 }

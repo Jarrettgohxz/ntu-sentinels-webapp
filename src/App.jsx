@@ -1,81 +1,60 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router";
 
-import Header from "./components/header";
+import Header from "./components/header.jsx";
 
-import "./css/App.css";
-import "./css/header.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./components/home.jsx";
+import AboutUs from "./components/aboutUs.jsx";
+import Events from "./components/events.jsx";
+import ContactUs from "./components/contactUs.jsx";
+import NotFound from "./components/notFound.jsx";
+
+import localStorage from "./utils/localStorage.js";
 
 function App() {
-  function modeToggle() {
-    // Toggle dark mode class
-    document.body.classList.toggle("dark-mode");
+  // useEffect(() => {
+  //   // LIGHT/DARK MODE
+  //   let theme;
 
-    // Change logo based on current mode
-    const logo = document.getElementById("logo-img");
-    if (document.body.classList.contains("dark-mode")) {
-      logo.src = "images/darkmode-logo.png"; // dark mode image
-    } else {
-      logo.src = "images/lightmode-logo.png"; // light mode image
-    }
-  }
+  //   theme = localStorage.retrieveTheme("theme");
 
-  useEffect(() => {
-    // Ensure initial state is light-mode visually
-    document.body.classList.remove("dark-mode");
+  //   if (!theme) {
+  //     if (
+  //       window.matchMedia &&
+  //       window.matchMedia("(prefers-color-scheme: dark)").matches
+  //     ) {
+  //       theme = "dark";
+  //       localStorage.storeTheme("dark");
+  //     } else if (
+  //       window.matchMedia &&
+  //       window.matchMedia("(prefers-color-scheme: light)").matches
+  //     ) {
+  //       theme = "light";
+  //       localStorage.storeTheme("light");
+  //     }
+  //   }
 
-    // Optional: keep toggle state in sync with body class on load
-    const toggle = document.getElementById("modeSwitch");
-    toggle.checked = document.body.classList.contains("dark-mode");
+  //   if (theme === "dark") {
+  //     document.body.classList.add("dark-mode");
+  //   } else {
+  //     document.body.classList.remove("dark-mode");
+  //   }
 
-    // Set initial logo
-    const logo = document.getElementById("logo-img");
-    logo.src = "images/lightmode-logo.png";
-  });
+  //   setTheme(theme);
+  // }, []);
 
   return (
-    <div className="app">
-      {/*  1st row - Header */}
-      <div className="row">
-        <div className="col-sm-12">
-          <Header />
-        </div>
-      </div>
+    <BrowserRouter>
+      <Header />
 
-      <div className="divider" />
-
-      {/* Main content  */}
-      <div className="container main-content">
-        <div className="content-wrapper">
-          {/* Left section: Text + Toggle  */}
-          <div className="text-section">
-            <div className="top-row">
-              <p id="body1">HELLO, WE ARE</p>
-              <label className="switch">
-                <input type="checkbox" id="modeSwitch" onClick={modeToggle} />
-                <span className="slider round"></span>
-              </label>
-            </div>
-            <p id="subheading1">NTU SENTINELS</p>
-            <p id="body1">[Insert short overview]</p>
-          </div>
-
-          {/* Right section: Logo  */}
-          <div className="logo-section">
-            <img src="lightmode-logo.png" alt="Logo" id="logo-img" />
-          </div>
-        </div>
-      </div>
-
-      {/* 3rd row - Footer */}
-      <div className="row" id="footer">
-        <div className="col-sm-12">
-          {/* To Do: Include the footer section  */}
-          <div w3-include-html="footer.html"></div>
-        </div>
-      </div>
-    </div>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="about-us" element={<AboutUs />} />
+        <Route path="events" element={<Events />} />
+        <Route path="contact-us" element={<ContactUs />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
