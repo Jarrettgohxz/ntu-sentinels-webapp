@@ -9,8 +9,13 @@ header {
   margin-top: 1rem;
   margin-bottom: 1rem;
 
-  position: fixed;
+  position: relative;
   flex-direction: column;
+  z-index: 9999;
+}
+
+.main-nav-inner {
+  z-index: 9999;
 }
 
 .navbar-nav {
@@ -63,8 +68,19 @@ body.dark-mode header hr {
   text-decoration: underline;
 }
 
-.navbar-nav .nav-link.underline {
+.navbar-nav .nav-link.selected {
   text-decoration: underline;
+  font-weight: bold;
+}
+
+.icon-menu-container {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  min-height: 10vh;
 }
 
 .icon-menu {
@@ -74,6 +90,8 @@ body.dark-mode header hr {
   position: absolute;
   right: 3rem;
   top: 3rem;
+
+  z-index: 9998; /* lower than .main-nav-inner*/
 }
 
 .icon-menu:hover {
@@ -118,9 +136,8 @@ body.dark-mode header hr {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
     bottom: 0;
-    z-index: 100;
+    right: 0;
     opacity: 0;
     visibility: hidden;
     background-color: var(--bg-color);
@@ -130,6 +147,10 @@ body.dark-mode header hr {
     opacity: 1;
     visibility: visible;
     transition: all 0.25s ease;
+  }
+
+  .icon-menu-container {
+    display: block;
   }
 
   .navbar-nav {
