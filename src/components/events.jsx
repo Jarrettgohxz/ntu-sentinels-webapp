@@ -70,18 +70,6 @@ function Events() {
           {/* UPCOMING EVENTS CONTAINER SECTION */}
           <div class="event-card-container">
             {upcomingEvents.map(({ id, Name, Date, PosterURL }) => (
-              // <div key={id} className="event-card">
-              //   <div class="event-card-header">{Name}</div>
-              //   <div class="event-card-poster-wrapper">
-              //     <img
-              //       class="event-poster-image"
-              //       src={PosterURL}
-              //       alt="Event Poster 3"
-              //     />
-              //   </div>
-              //   <div class="event-card-footer">On: {Date}</div>
-              // </div>
-
               <div
                 key={id}
                 className="event-card-3d-wrapper"
@@ -97,7 +85,9 @@ function Events() {
                         alt="Event Poster 3"
                       />
                     </div>
-                    <div class="event-card-footer">On: {Date}</div>
+                    <div class="event-card-footer">
+                      On: {dateUtils.convertDateTimeFormat(Date)}
+                    </div>
                   </div>
 
                   <div className="event-card event-card-back">
@@ -135,7 +125,10 @@ function Events() {
                         alt="Event Poster 3"
                       />
                     </div>
-                    <div class="event-card-footer">On: {Date}</div>
+                    <div class="event-card-footer">
+                      {" "}
+                      On: {dateUtils.convertDateTimeFormat(Date)}
+                    </div>
                   </div>
 
                   <div className="event-card event-card-back">

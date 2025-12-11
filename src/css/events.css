@@ -25,7 +25,7 @@
 }
 
 .event-card {
-  flex: 0 0 18rem;
+  flex: 0 0 17rem;
   background-color: var(--main-color);
   border-radius: 0.4rem;
   overflow: hidden;
@@ -60,8 +60,8 @@
 }
 
 .event-card-poster-wrapper {
-  width: 16rem;
-  height: 20rem;
+  width: 15rem;
+  height: 19rem;
   margin: 0 auto;
   position: relative;
   display: flex;
@@ -80,17 +80,15 @@
   transition: transform 0.4s ease;
 }
 
-/* Only apply scale when the wrapper is hovered AND the flipper is NOT flipped */
+/* Only apply the style on ".event-poster-image" when the wrapper is hovered AND the flipper is NOT flipped */
 .event-card-3d-wrapper:hover
   .event-card-flipper:not(.is-flipped)
   .event-poster-image {
   transform: scale(1.06);
-  transition: transform 0.4s ease; /* Must re-add transition */
+  transition: transform 0.4s ease;
 }
 
-/* Also ensure the scale resets when the mouse leaves */
 .event-card-flipper .event-poster-image {
-  /* Initial state, needed for transition */
   transform: scale(1);
   transition: transform 0.4s ease;
 }
@@ -113,88 +111,55 @@
   }
 }
 
-/* ======================================= */
-/* 1. ESTABLISH THE 3D SPACE (The Wrapper) */
-/* ======================================= */
 .event-card-3d-wrapper {
-  /* Set the viewing depth—higher value makes the flip less dramatic */
-  perspective: 1000px;
-  /* Set fixed dimensions (e.g., 18rem width, 27rem height) */
-  width: 18rem;
-  height: 28rem;
-  /* (Your flex: 0 0 18rem was doing this previously) */
+  perspective: 1000px; /* controls how dramatic the flip will look */
 
-  transition: transform 0.3s ease; /* Ensure smooth transition */
+  width: 17rem;
+  height: 27rem;
+
+  transition: transform 0.3s ease;
 }
 
-/* ======================================= */
-/* 2. THE ROTATING ELEMENT (The Flipper)   */
-/* ======================================= */
 .event-card-flipper {
   width: 100%;
   height: 100%;
   position: relative;
 
-  /* CRITICAL: Ensures children (faces) rotate in 3D space */
-  transform-style: preserve-3d;
-
-  /* Initial state: no rotation */
-  transform: rotateY(0deg);
-
-  /* Set the animation speed */
+  transform-style: preserve-3d; /* ensures children (faces) rotate in 3D space */
+  transform: rotateY(0deg); /* initial state: no rotation */
   transition: transform 1s ease;
 }
 
-/* ======================================= */
-/* 3. THE FRONT AND BACK FACES             */
-/* ======================================= */
+.event-card-flipper.is-flipped {
+  transform: rotateY(180deg);
+}
+
 .event-card-front,
 .event-card-back {
-  /* Positions the faces exactly on top of each other */
   position: absolute;
   width: 100%;
   height: 100%;
 
-  /* CRITICAL: Hides the reverse side of the element when it rotates away */
-  backface-visibility: hidden;
+  backface-visibility: hidden; /* hides the reverse side of the element when it rotates away */
 
-  /* Set the background/visual styles here */
   background-color: var(--main-color);
   border-radius: 0.4rem;
-  /* ... other non-structural styles ... */
 }
 
-/* 4. Initial Face Rotation */
-
-/* Front is already facing the viewer (0deg rotation - default) */
 .event-card-front {
   transform: rotateY(0deg);
 }
 
-/* Back is rotated 180 degrees away, hiding it from the viewer */
 .event-card-back {
-  transform: rotateY(180deg);
-}
-
-/* ======================================= */
-/* 5. HOVER EFFECT (The Flip Trigger)      */
-/* ======================================= */
-.event-card-flipper.is-flipped {
-  /* When the wrapper is hovered, rotate the flipper 180 degrees */
   transform: rotateY(180deg);
 }
 
 .event-card-3d-wrapper:hover {
   transform: translateY(-8px);
-  transition: transform 0.3s ease; /* Ensure smooth transition */
+  transition: transform 0.3s ease;
   cursor: pointer;
 }
 
-/* ========================================= */
-/* OVERLAY STYLING (TARGETING FRONT FACE)    */
-/* ========================================= */
-
-/* 1. Base style for the pseudo-element on the front face */
 .event-card-front::after {
   content: "";
   position: absolute;
@@ -206,34 +171,31 @@
   transition: background-color 0.3s ease, opacity 0.3s ease;
 
   border-radius: inherit;
-  pointer-events: none; /* Allows clicks to pass through */
+  pointer-events: none;
 }
 
 .event-card-front::before {
-  content: "Click to view more information"; /* The text content */
+  content: "Click to view more information";
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Center perfectly */
+  transform: translate(-50%, -50%);
 
-  color: #fff; /* White text color */
+  color: #d9d9d9;
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
 
-  z-index: 999; /* Above the ::after overlay */
-  opacity: 0; /* Start hidden */
+  z-index: 999;
+  opacity: 0;
 
-  /* Smooth transition for text appearance */
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
-/* 2. Apply opacity only when hovered AND NOT flipped */
 .event-card-3d-wrapper:hover
   .event-card-flipper:not(.is-flipped)
   .event-card-front::after {
-  /* When the wrapper is hovered AND the flipper is NOT flipped, show the overlay */
   background-color: var(--main-color);
   opacity: 0.9;
 }
@@ -241,6 +203,5 @@
 .event-card-3d-wrapper:hover
   .event-card-flipper:not(.is-flipped)
   .event-card-front::before {
-  /* Show the text */
   opacity: 1;
 }
