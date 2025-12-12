@@ -85,9 +85,9 @@ function Header() {
             </li>
           </ul>
         </div>
-
-        <div className="divider" />
       </nav>
+
+      <div className="header-bottom-divider" />
 
       <div className="icon-menu-container">
         <RiMenu2Fill className="icon-menu" onClick={handleOpenMenu} />

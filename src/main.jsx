@@ -10,9 +10,9 @@ import "./css/index.css";
 import "./css/fonts.css";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  </StrictMode>
+  // <StrictMode>
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>
+  // </StrictMode>
 );

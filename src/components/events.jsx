@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import sqljs from "../utils/sqljs-httpvfs";
 import dateUtils from "../utils/date";
@@ -44,9 +44,29 @@ function Events() {
 
       setPastEvents(past);
       setUpcomingEvents(upcoming);
+
+      console.log(past);
     };
     retrieveData();
   }, []);
+
+  function textWithNewlines(text) {
+    // 1. Split the text string by the newline character ('\n')
+    const lines = text.split("\n");
+
+    // 2. Map over the array of lines
+    return (
+      <p>
+        {lines.map((line, index) => (
+          <React.Fragment key={index}>
+            {line}
+            {/* 3. Insert a <br /> after every line segment EXCEPT the last one */}
+            {index < lines.length - 1 && <br />}
+          </React.Fragment>
+        ))}
+      </p>
+    );
+  }
 
   const cardToggle = (id) => {
     const el = document.getElementById(`flipper-${id}`);
@@ -69,33 +89,35 @@ function Events() {
 
           {/* UPCOMING EVENTS CONTAINER SECTION */}
           <div class="event-card-container">
-            {upcomingEvents.map(({ id, Name, Date, PosterURL }) => (
-              <div
-                key={id}
-                className="event-card-3d-wrapper"
-                onClick={() => cardToggle(id)}
-              >
-                <div className="event-card-flipper" id={`flipper-${id}`}>
-                  <div className="event-card event-card-front">
-                    <div class="event-card-header">{Name}</div>
-                    <div class="event-card-poster-wrapper">
-                      <img
-                        class="event-poster-image"
-                        src={PosterURL}
-                        alt="Event Poster 3"
-                      />
+            {upcomingEvents.map(
+              ({ id, Name, Date, PosterURL, Description }) => (
+                <div
+                  key={id}
+                  className="event-card-3d-wrapper"
+                  onClick={() => cardToggle(id)}
+                >
+                  <div className="event-card-flipper" id={`flipper-${id}`}>
+                    <div className="event-card event-card-front">
+                      <div class="event-card-header">{Name}</div>
+                      <div class="event-card-poster-wrapper">
+                        <img
+                          class="event-poster-image"
+                          src={PosterURL}
+                          alt="Event Poster 3"
+                        />
+                      </div>
+                      <div class="event-card-footer">
+                        On: {dateUtils.convertDateTimeFormat(Date)}
+                      </div>
                     </div>
-                    <div class="event-card-footer">
-                      On: {dateUtils.convertDateTimeFormat(Date)}
-                    </div>
-                  </div>
 
-                  <div className="event-card event-card-back">
-                    <p>[More information here]</p>
+                    <div className="event-card event-card-back">
+                      <p>{textWithNewlines(Description)}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       ) : null}
@@ -109,7 +131,7 @@ function Events() {
 
           {/* PAST EVENTS CONTAINER SECTION */}
           <div class="event-card-container">
-            {pastEvents.map(({ id, Name, Date, PosterURL }) => (
+            {pastEvents.map(({ id, Name, Date, PosterURL, Description }) => (
               <div
                 key={id}
                 className="event-card-3d-wrapper"
@@ -132,7 +154,7 @@ function Events() {
                   </div>
 
                   <div className="event-card event-card-back">
-                    <p>[More information here]</p>
+                    <p>{textWithNewlines(Description)}</p>
                   </div>
                 </div>
               </div>
