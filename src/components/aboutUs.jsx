@@ -7,15 +7,34 @@ import "../css/aboutUs.css";
 function AboutUs() {
     const [activeTop4, setActiveTop4] = useState([]);
     const [activeDirectors, setActiveDirectors] = useState([]);
-    const [legacyTop4, setLegacyTop4] = useState([]);
-    const [legacyDirectors, setLegacyDirectors] = useState([]);
+    const [inactiveTop4, setInactiveTop4] = useState([]);
+    const [inactiveDirectors, setInactiveDirectors] = useState([]);
 
-    {/* Fetching all Top4 and Directors from the database and organising them based on Status and Division */}
+    
     useEffect(() => {
-    const retrieveData = async () => {
-        const activeResults = await sqljs(`SELECT * FROM IndividualDetail WHERE Status = 'Active'`);
-        const legacyResults = await sqljs(`SELECT * FROM IndividualDetail WHERE Status = 'Inactive'`);
+        const retrieveData = async () => {
+        {/* Fetching all Top4 and Directors from the database and organising them based on Status and Division
+            Performed if new browser session or sessionStorage key not found */}
         
+        let activeResults;
+        let inactiveResults;
+        
+        if (window.sessionStorage.getItem("activeData") != null) {
+            activeResults = JSON.parse(window.sessionStorage.getItem("activeData"));
+        }
+        else {
+            activeResults = await sqljs(`SELECT * FROM IndividualDetail WHERE Status = 'Active'`);
+            console.log(activeResults);
+        }
+
+        if (window.sessionStorage.getItem("inactiveData") != null) {
+            inactiveResults = JSON.parse(window.sessionStorage.getItem("inactiveData"));
+        }
+        else {
+            inactiveResults = await sqljs(`SELECT * FROM IndividualDetail WHERE Status = 'Inactive'`);
+            console.log(inactiveResults);
+        }
+
         // Return early if no table or data found
         if (!activeResults || activeResults.length === 0 || 
             !activeResults[0] || !activeResults[0].values || 
@@ -25,15 +44,25 @@ function AboutUs() {
             return;
         }
 
-        if (!legacyResults || legacyResults.length === 0 || 
-            !legacyResults[0] || !legacyResults[0].values || 
-            legacyResults[0].values.length === 0) {
-            setLegacyTop4([]);
-            setLegacyDirectors([]);
+        if (!inactiveResults || inactiveResults.length === 0 || 
+            !inactiveResults[0] || !inactiveResults[0].values || 
+            inactiveResults[0].values.length === 0) {
+            setInactiveTop4([]);
+            setInactiveDirectors([]);
             return;
         }
+        
+        // Store data in sessionStorage for future use in the same session and if data has changed update the cache
+        if (window.sessionStorage.getItem("activeData") == null || JSON.parse(window.sessionStorage.getItem("activeData")) != activeResults) {
+            window.sessionStorage.setItem("activeData", JSON.stringify(activeResults));
+            // console.log("Active data stored in sessionStorage");
+        }   
+        if (window.sessionStorage.getItem("inactiveData") == null || JSON.parse(window.sessionStorage.getItem("inactiveData")) != inactiveResults) {
+            window.sessionStorage.setItem("inactiveData", JSON.stringify(inactiveResults));
+            // console.log("Inactive data stored in sessionStorage");
+        }
 
-        // Else, map and filter data to display later
+        // Map and filter data to display later
         const parsedData = activeResults[0];
         const formattedData = parsedData.values.map( item => 
             Object.fromEntries(
@@ -43,14 +72,14 @@ function AboutUs() {
         setActiveTop4(formattedData.filter( member => member.Division === "Top4" ));
         setActiveDirectors(formattedData.filter( member => member.Division === "Director"));
         
-        const parsedLegacyData = legacyResults[0];
-        const formattedLegacyData = parsedLegacyData.values.map( item => 
+        const parsedInactiveData = inactiveResults[0];
+        const formattedInactiveData = parsedInactiveData.values.map( item => 
             Object.fromEntries(
-                item.map( (value, index) => [parsedLegacyData.columns[index], value] )
+                item.map( (value, index) => [parsedInactiveData.columns[index], value] )
             )
         )
-        setLegacyTop4(formattedLegacyData.filter( member => member.Division === "Top4" ));
-        setLegacyDirectors(formattedLegacyData.filter( member => member.Division === "Director"));
+        setInactiveTop4(formattedInactiveData.filter( member => member.Division === "Top4" ));
+        setInactiveDirectors(formattedInactiveData.filter( member => member.Division === "Director"));
         };
         retrieveData();
     },[]);
@@ -117,9 +146,9 @@ function AboutUs() {
     </div>
     <div className="sentinels-team">
     <h1 id = 'legacy'>LEGACY</h1>
-        {legacyTop4.length > 0 && (
+        {inactiveTop4.length > 0 && (
             <div className = "Top4"> {
-                legacyTop4.map((top) => (
+                inactiveTop4.map((top) => (
                     <div key={top.id} className = "indiv-detail">
                         {/* Image format to be discussed and standardised */}
                         <img src = {`/images/${top.Name}.png`} 
@@ -134,9 +163,9 @@ function AboutUs() {
                 ))}
             </div>
         )}
-        {legacyDirectors.length > 0 && (
+        {inactiveDirectors.length > 0 && (
             <div className = "Directors"> {
-                legacyDirectors.map((director) => (
+                inactiveDirectors.map((director) => (
                     <div key = {director.id} className = "indiv-detail">
                         {/* Image format to be discussed and standardised */}
                         <img src = {`/images/${top.Name}.png`} 
