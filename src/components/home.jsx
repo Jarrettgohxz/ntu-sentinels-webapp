@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-
 import { useTheme } from "../context/ThemeContext";
+
+import Events from "./events";
 
 import "../css/home.css";
 import "../css/header.css";
@@ -56,13 +57,9 @@ function Home() {
         </div>
       </div>
 
-      {/* 3rd row - Footer */}
-      <div className="row" id="footer">
-        <div className="col-sm-12">
-          {/* To Do: Include the footer section  */}
-          <div w3-include-html="footer.html"></div>
-        </div>
-      </div>
+      {/* EVENTS SECTION */}
+
+      <Events />
     </div>
   );
 }

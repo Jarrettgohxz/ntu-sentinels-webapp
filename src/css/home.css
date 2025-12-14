@@ -1,21 +1,26 @@
 .app {
-  position: fixed;
-  top: 0;
+  /* position: fixed; */
+  /* top: 0; */
 
-  width: 100%;
-  height: 100vh;
+  /* width: 100%; */
+  /* height: 100vh; */
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
+  min-height: 100vh;
+
+  margin-top: -4rem;
 }
 
 /* Center main content vertically */
 .main-content {
-  flex: 1;
+  /* flex: 1; */
   display: flex;
   justify-content: center;
   align-items: center;
+
+  height: 100vh;
 }
 
 /* Wrapper to hold text and logo side by side */

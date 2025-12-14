@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { RiMenu2Fill, RiCloseFill } from "react-icons/ri";
 
 import URL_PATH from "../config/path.json";
 
 function Header() {
   const [currentPage, setCurrentPage] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     let currentPath = window.location.pathname;
@@ -29,6 +30,23 @@ function Header() {
     menuList.classList.remove("is-open");
   };
 
+  const handleEventsPageNavigation = async () => {
+    setCurrentPage("events");
+
+    navigate("/");
+
+    await new Promise((res) => setTimeout(res, 500));
+
+    const element = document.getElementById("events-section-scroll-marker");
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <>
       <nav className="main-nav">
@@ -36,7 +54,7 @@ function Header() {
           <RiCloseFill className="menu-close-icon" color="white" />
         </div>
 
-        <div className="main-nav-inner d-flex flex-column">
+        <div className="main-nav-inner">
           <div className="menu-title">Menu</div>
 
           <ul className="navbar-nav">
@@ -62,13 +80,12 @@ function Header() {
                 About Us
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" onClick={handleEventsPageNavigation}>
               <Link
                 className={`nav-link ${
                   currentPage == "events" ? "selected" : ""
                 }`}
-                to={URL_PATH.path.events}
-                onClick={() => setCurrentPage("events")}
+                onClick={handleEventsPageNavigation}
               >
                 Events
               </Link>
@@ -86,9 +103,8 @@ function Header() {
             </li>
           </ul>
         </div>
+        <div className="header-bottom-divider" />
       </nav>
-
-      <div className="header-bottom-divider" />
 
       <div className="icon-menu-container">
         <RiMenu2Fill className="icon-menu" onClick={handleOpenMenu} />

@@ -80,6 +80,8 @@ function Events() {
 
   return (
     <div className="event-page-container">
+      <div id="events-section-scroll-marker" />
+
       {/* UPCOMING EVENTS HEADER SECTION */}
       {upcomingEvents.length > 0 ? (
         <div>
@@ -88,7 +90,7 @@ function Events() {
           </div>
 
           {/* UPCOMING EVENTS CONTAINER SECTION */}
-          <div class="event-card-container">
+          <div className="event-card-container">
             {upcomingEvents.map(
               ({ id, Name, Date, PosterURL, Description }) => (
                 <div
@@ -98,15 +100,15 @@ function Events() {
                 >
                   <div className="event-card-flipper" id={`flipper-${id}`}>
                     <div className="event-card event-card-front">
-                      <div class="event-card-header">{Name}</div>
-                      <div class="event-card-poster-wrapper">
+                      <div className="event-card-header">{Name}</div>
+                      <div className="event-card-poster-wrapper">
                         <img
-                          class="event-poster-image"
+                          className="event-poster-image"
                           src={PosterURL}
                           alt="Event Poster 3"
                         />
                       </div>
-                      <div class="event-card-footer">
+                      <div className="event-card-footer">
                         On: {dateUtils.convertDateTimeFormat(Date)}
                       </div>
                     </div>
@@ -130,7 +132,7 @@ function Events() {
           </div>
 
           {/* PAST EVENTS CONTAINER SECTION */}
-          <div class="event-card-container">
+          <div className="event-card-container">
             {pastEvents.map(({ id, Name, Date, PosterURL, Description }) => (
               <div
                 key={id}
@@ -139,15 +141,15 @@ function Events() {
               >
                 <div className="event-card-flipper" id={`flipper-${id}`}>
                   <div className="event-card event-card-front">
-                    <div class="event-card-header">{Name}</div>
-                    <div class="event-card-poster-wrapper">
+                    <div className="event-card-header">{Name}</div>
+                    <div className="event-card-poster-wrapper">
                       <img
-                        class="event-poster-image"
+                        className="event-poster-image"
                         src={PosterURL}
                         alt="Event Poster 3"
                       />
                     </div>
-                    <div class="event-card-footer">
+                    <div className="event-card-footer">
                       {" "}
                       On: {dateUtils.convertDateTimeFormat(Date)}
                     </div>
