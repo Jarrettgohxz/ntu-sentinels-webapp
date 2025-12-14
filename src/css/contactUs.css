@@ -1,0 +1,73 @@
+.contact-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.contact-us-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-us-header-container p {
+  color: var(--main-color);
+  font-size: 2.4rem;
+}
+
+.contact-us-page-logo {
+  width: 10rem;
+  height: 10rem;
+}
+
+.contact-form {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.input-field,
+.input-message {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--form-color);
+  font-size: 1rem;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.input-field::placeholder,
+.input-message::placeholder {
+  color: var(--text-color);
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+.input-field:focus,
+.input-message:focus {
+  outline: none;
+}
+
+.input-message {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-links a {
+  color: var(--main-color);
+  font-size: 3rem;
+}
+
+.social-links a:hover {
+  animation: shake 0.8s infinite;
+}

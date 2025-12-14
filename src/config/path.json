@@ -1,0 +1,8 @@
+{
+  "path": {
+    "home": "/",
+    "aboutUs": "/about-us",
+    "events": "/events",
+    "contactUs": "contact-us"
+  }
+}

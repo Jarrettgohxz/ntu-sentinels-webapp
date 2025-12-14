@@ -1,9 +1,12 @@
+import "../css/notFound.css";
+
 function NotFound() {
   return (
-    <div style={{ padding: "50px", textAlign: "center" }}>
-      <h1>404 - Page Not Found</h1>
-      <p>Sorry, the page you were looking for doesn't exist.</p>
-      {/* You could add a link back to the homepage here */}
+    <div className="not-found-container">
+      <h1 className="header-text">404 - Page Not Found</h1>
+      <p className="description-text">
+        Sorry, the page you were looking for doesn't exist.
+      </p>
     </div>
   );
 }

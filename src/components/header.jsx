@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-
 import { RiMenu2Fill, RiCloseFill } from "react-icons/ri";
+
+import URL_PATH from "../config/path.json";
 
 function Header() {
   const [currentPage, setCurrentPage] = useState();
@@ -13,7 +14,7 @@ function Header() {
       ? currentPath.substring(1) // Start from the second character (index 1)
       : currentPath;
 
-    currentPath = currentPath === "" ? "home" : currentPath;
+    currentPath = currentPath === "" ? URL_PATH.path.home : currentPath;
 
     setCurrentPage(currentPath);
   }, []);
@@ -44,7 +45,7 @@ function Header() {
                 className={`nav-link ${
                   currentPage == "home" ? "selected" : ""
                 }`}
-                to="/"
+                to={URL_PATH.path.home}
                 onClick={() => setCurrentPage("home")}
               >
                 Home
@@ -55,7 +56,7 @@ function Header() {
                 className={`nav-link ${
                   currentPage == "about-us" ? "selected" : ""
                 }`}
-                to="/about-us"
+                to={URL_PATH.path.aboutUs}
                 onClick={() => setCurrentPage("about-us")}
               >
                 About Us
@@ -66,7 +67,7 @@ function Header() {
                 className={`nav-link ${
                   currentPage == "events" ? "selected" : ""
                 }`}
-                to="/events"
+                to={URL_PATH.path.events}
                 onClick={() => setCurrentPage("events")}
               >
                 Events
@@ -77,7 +78,7 @@ function Header() {
                 className={`nav-link ${
                   currentPage == "contact-us" ? "selected" : ""
                 }`}
-                to="/contact-us"
+                to={URL_PATH.path.contactUs}
                 onClick={() => setCurrentPage("contact-us")}
               >
                 Contact Us

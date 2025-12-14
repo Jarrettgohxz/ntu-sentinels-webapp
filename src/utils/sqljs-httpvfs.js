@@ -1,4 +1,5 @@
 import { createDbWorker } from "sql.js-httpvfs";
+import SQLITE_DB_URL from "../config/db.json";
 
 // sadly there's no good way to package workers and wasm directly so you need a way to get these two URLs from your bundler.
 // This is the webpack5 way to create a asset bundle of the worker and wasm:
@@ -15,7 +16,7 @@ const DB_CONFIG = {
   config: {
     serverMode: "full", // file is just a plain old full sqlite database
     requestChunkSize: 4096, // the page size of the  sqlite database (by default 4096)
-    url: "http://localhost:5173/data.sqlite3", // url to the database (relative or full)
+    url: SQLITE_DB_URL.sqliteDBURL, // url to the database (relative or full)
   },
 };
 
