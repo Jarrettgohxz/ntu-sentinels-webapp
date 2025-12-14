@@ -31,8 +31,6 @@ function Header() {
   };
 
   const handleEventsPageNavigation = async () => {
-    setCurrentPage("events");
-
     navigate("/");
 
     await new Promise((res) => setTimeout(res, 500));
@@ -44,6 +42,18 @@ function Header() {
         behavior: "smooth",
         block: "start",
       });
+    }
+  };
+
+  const handlePageNavigation = (id) => {
+    const menuList = document.querySelector(".main-nav");
+    menuList.classList.remove("is-open");
+
+    setCurrentPage(id);
+
+    if (id === "events") {
+      handleEventsPageNavigation();
+      return;
     }
   };
 
@@ -64,7 +74,7 @@ function Header() {
                   currentPage == "home" ? "selected" : ""
                 }`}
                 to={URL_PATH.path.home}
-                onClick={() => setCurrentPage("home")}
+                onClick={() => handlePageNavigation("home")}
               >
                 Home
               </Link>
@@ -75,7 +85,7 @@ function Header() {
                   currentPage == "about-us" ? "selected" : ""
                 }`}
                 to={URL_PATH.path.aboutUs}
-                onClick={() => setCurrentPage("about-us")}
+                onClick={() => handlePageNavigation("about-us")}
               >
                 About Us
               </Link>
@@ -85,7 +95,7 @@ function Header() {
                 className={`nav-link ${
                   currentPage == "events" ? "selected" : ""
                 }`}
-                onClick={handleEventsPageNavigation}
+                onClick={() => handlePageNavigation("events")}
               >
                 Events
               </Link>
@@ -96,7 +106,7 @@ function Header() {
                   currentPage == "contact-us" ? "selected" : ""
                 }`}
                 to={URL_PATH.path.contactUs}
-                onClick={() => setCurrentPage("contact-us")}
+                onClick={() => handlePageNavigation("contact-us")}
               >
                 Contact Us
               </Link>
