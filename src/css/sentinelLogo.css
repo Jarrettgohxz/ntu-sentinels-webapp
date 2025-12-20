@@ -1,0 +1,16 @@
+.ascii-Logo {
+    white-space: pre;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5px;
+
+    overflow-y: hidden;
+    color: var(--text-color);
+    
+    line-height: 1;
+    height: 53lh;
+    
+    width: 100%;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}

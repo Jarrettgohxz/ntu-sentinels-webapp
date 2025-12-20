@@ -3,8 +3,67 @@ import sqljs from "/src/utils/sqljs-httpvfs";
 import banner from "/public/ntu-sentinels-logo.jpeg";
 import defaultImage from "../../public/images/tux.jpeg";
 import "../css/aboutUs.css";
+import "../css/sentinelLogo.css";
+import IterativeLineAnimation from "../Animations/iterativeLineAnimation";
 
 function AboutUs() {
+  const sentinelAsciiLogo = `                                                                                                    
+                                                                                                              
+                                                                                                              
+                                                                                                              
+                                                                                                              
+                                                                                                              
+                                                                                                              
+                                                                                                              
+                                                                                                              
+                                                 555555666     666655566                                      
+                                                6655555555655555555555656                                     
+                                          4666  6655555555555555555555555  656                                
+                                      6555665  46655555555555555555555566  4665566                            
+                                  6666655554   555555555555555555555555564   655566656                        
+                               555556556       565555555555555555555555566       565555566                    
+                             65656666         4555555555555555555555555555          46555656                  
+                            65565              656555555555555555555555565              5556                  
+                            65555                   65566555555655564                   6555                  
+                            65566       65656                               6656        6556                  
+                            45556     65665656                             56556565     6656                  
+                            65566    6655555555656556                666655555555566    6655                  
+                            45566     665555555555555556566556656655555555555566666     6655                  
+                            65556        666656555555555555555555555555555566654        5666                  
+                            46556              66656565556555556556565556               6666                  
+                            46566        5656                              65555        6565                  
+                            46554       6565  65    456            56   466  6666       6566                  
+                            46564       5566 4665  565465  655   6566 545656 6666       6555                  
+                            45564      4665  6555 455  56 56565 566  6546566  555       6555                  
+                            66556      4656  665654     655555555     665555  6566      6566                  
+                             5565      4656   65556565556555555565556665556   465       5556                  
+                             6565       665   46555555666664466465555555566   466       5655                  
+                             6556       555    46555555665     65655555564    565       5665                  
+                             5665        55   6  6565555565   5655555566  5   65       5655                   
+                              6555        55 56    655555664 665555555    666 5        6565                   
+                              6555         4665    5655564  6  665556     6566        5555                    
+                               6566          66     566  6665565  655     65         45656                    
+                                55554         5        65555555556        64        65666                     
+                                 65556                 4655555555                  55664                      
+                                  66556                  6555556                  5655                        
+                                    6555                   566                  55556                         
+                                     465                                        555                           
+                                                                                                              
+                                              6564  565 555556656556  656                                     
+                                              55564 565 566655565554  556                                     
+                                              656655666   6656  6554  556                                     
+                                              655555656   5664  6554  656                                     
+                                              555456555   6656  5555  555                                     
+                                              5564 5556   5566  555566666                                     
+                                               56   566   456     56665                                       
+                                                                                                              
+                                                                                                              
+                                                                                                              
+                                                                                                              
+                                                                                                              
+                                                                                                              `
+  
+
   const [activeTop4, setActiveTop4] = useState([]);
   const [activeDirectors, setActiveDirectors] = useState([]);
   const [inactiveTop4, setInactiveTop4] = useState([]);
@@ -132,10 +191,10 @@ function AboutUs() {
   return (
     <>
       <div className="topPartition" id="top-scroll-marker" />
-      <div className="banner">
+      {/* <div className="banner">
         <img src={banner} alt="About Us Banner" />
-      </div>
-
+      </div> */}
+      <div><IterativeLineAnimation className="ascii-Logo" art = {sentinelAsciiLogo} speed = "50"/></div>
       <div className="about-text">
         <h1>Our Mission</h1>
         <p>
@@ -184,7 +243,7 @@ function AboutUs() {
               <div key={director.id} className="indiv-detail">
                 {/* Image format to be discussed and standardised */}
                 <img
-                  src={`/images/${top.Name}.png`}
+                  src={`/images/${director.Name}.png`}
                   onError={(e) => {
                     e.target.onError = null;
                     e.target.src = defaultImage;
