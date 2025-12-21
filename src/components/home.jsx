@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 
 import Events from "./events";
@@ -8,6 +8,22 @@ import "../css/header.css";
 
 function Home() {
   const { theme, toggleTheme, logoSrc } = useTheme();
+  const [opacity, setOpacity] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const vh = window.innerHeight;
+
+      // Calculate opacity: starts at 1, reaches 0 when scrolled 1 full page
+      // We use Math.max to ensure it doesn't go below 0
+      const newOpacity = Math.max(1 - scrollY / vh, 0);
+      setOpacity(newOpacity);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   function modeToggle() {
     // // Toggle dark mode class
@@ -36,7 +52,7 @@ function Home() {
     <div className="app">
       {/* Main content  */}
       <div className="container main-content">
-        <div className="content-wrapper">
+        <div className="content-wrapper" style={{ opacity: opacity }}>
           {/* Left section: Text + Toggle  */}
           <div className="text-section">
             <div className="top-row">

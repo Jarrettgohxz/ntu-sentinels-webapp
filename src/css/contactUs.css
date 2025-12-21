@@ -1,15 +1,11 @@
 .contact-container {
   width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-}
 
-.contact-us-header-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  min-height: 80vh;
 }
 
 .contact-us-header-container p {
@@ -63,10 +59,17 @@
 }
 
 .social-links a {
-  color: var(--main-color);
+  color: #333333;
   font-size: 3rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* to give different font size compared to other social icons*/
+#email-icon {
+  font-size: 3.4rem;
 }
 
 .social-links a:hover {
-  animation: shake 0.8s infinite;
+  color: #573f69;
+  transform: scale(1.15);
 }

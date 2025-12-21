@@ -4,7 +4,7 @@ import banner from "/public/ntu-sentinels-logo.jpeg";
 import defaultImage from "../../public/images/tux.jpeg";
 import "../css/aboutUs.css";
 import "../css/sentinelLogo.css";
-import IterativeLineAnimation from "../Animations/iterativeLineAnimation";
+import IterativeLineAnimation from "../animations/iterativeLineAnimation";
 
 function AboutUs() {
   const sentinelAsciiLogo = `                                                                                                    
@@ -61,8 +61,7 @@ function AboutUs() {
                                                                                                               
                                                                                                               
                                                                                                               
-                                                                                                              `
-  
+                                                                                                              `;
 
   const [activeTop4, setActiveTop4] = useState([]);
   const [activeDirectors, setActiveDirectors] = useState([]);
@@ -194,7 +193,13 @@ function AboutUs() {
       {/* <div className="banner">
         <img src={banner} alt="About Us Banner" />
       </div> */}
-      <div><IterativeLineAnimation className="ascii-Logo" art = {sentinelAsciiLogo} speed = "50"/></div>
+      <div>
+        <IterativeLineAnimation
+          className="ascii-Logo"
+          art={sentinelAsciiLogo}
+          speed="50"
+        />
+      </div>
       <div className="about-text">
         <h1>Our Mission</h1>
         <p>

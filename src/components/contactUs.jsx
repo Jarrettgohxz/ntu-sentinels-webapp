@@ -1,5 +1,6 @@
 import { useTheme } from "../context/ThemeContext";
 import { FaLinkedin, FaInstagram, FaTelegram, FaDiscord } from "react-icons/fa";
+import { MdOutlineMail } from "react-icons/md";
 
 import "../css/contactUs.css";
 
@@ -10,33 +11,15 @@ function ContactUs() {
     <div className="contact-container">
       {/* Logo + header text */}
       <div className="contact-us-header-container">
-        <img src={logoSrc} alt="Logo" className="contact-us-page-logo" />
         <p>Contact Us!</p>
       </div>
 
-      {/* Form section */}
-      <form className="contact-form">
-        <input
-          type="text"
-          placeholder="Your Name"
-          className="input-field"
-          required
-        />
-        <input
-          type="email"
-          placeholder="Your Email"
-          className="input-field"
-          required
-        />
-        <textarea
-          placeholder="Your Message"
-          className="input-message"
-          required
-        />
-      </form>
-
       {/* Socials */}
       <div class="social-links">
+        <a href="#" aria-label="Email">
+          <MdOutlineMail id="email-icon" />
+        </a>
+
         <a href="#" aria-label="LinkedIn">
           <FaLinkedin />
         </a>

@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: column;
   gap: 5rem;
+
+  scroll-snap-align: start;
+  z-index: 2;
 }
 
 .event-page-header-container {

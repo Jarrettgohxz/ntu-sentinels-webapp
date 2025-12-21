@@ -21,6 +21,12 @@
   align-items: center;
 
   height: 100vh;
+
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  overflow: hidden;
+  scroll-snap-align: start;
 }
 
 /* Wrapper to hold text and logo side by side */
@@ -31,6 +37,9 @@
   align-items: center;
   /* width: 90%; */
   gap: 40px;
+
+  will-change: opacity;
+  transition: opacity 0.1s linear;
 }
 
 /* Left side text */
