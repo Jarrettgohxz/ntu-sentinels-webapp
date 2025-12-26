@@ -7,10 +7,28 @@
     color: var(--text-color);
     
     line-height: 1;
-    height: 53lh;
+    height: 45lh;
     
     width: 100%;
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
+}
+
+.flickering-Logo, .flickering-Letters {
+    white-space: pre;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5px;
+    
+    color: var(--text-color);
+    overflow-y: hidden;
+
+    line-height: 1;
+    margin: 0;
+
+    transition: opacity 750 ease-in;
+}
+
+.flickering-Letters{
+    max-width: 100%;
 }

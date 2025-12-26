@@ -1,24 +1,33 @@
-import { useEffect, useState } from "react";
 // Animation template for line by line reveal onto screen.
 // This file can be imported to other pages that require animating ascii art.
-// art variable refers to the ascii art, it should be filled on the respective page where this animation is used.
-// CSS will need to be created by oneself for more specific details
+// asciiArt variable refers to the ascii art, it should be referenced from asciiArtList.js
+// CSS will need to be created by oneself for more specific details of the respective art involved
+import { useEffect, useState } from "react";
+import { ASCII_ART } from "./asciiArtList";
+import "../css/sentinelLogo.css";
 export default function IterativeLineAnimation (
     {
-        art,
+        asciiArt = "",
         className = "",
-        speed = 80,
+        delay = 50,
     }) {
-    const lines = art.split("\n");
+    const art = ASCII_ART[asciiArt];
+
+    if (!art){
+      console.warn(`ASCII ART -> "${asciiArt}" does not exist!`);
+      return null;
+    }
+
+    const lines = art.trimEnd().split("\n");
     const [count, setCount] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
       setCount((c) => Math.min(c + 1, lines.length));
-    }, speed);
+    }, delay);
 
     return () => clearInterval(id);
-  }, [art, lines.length, speed]);
+  }, [art, lines.length, delay]);
 
     return (
         <pre className={className}>

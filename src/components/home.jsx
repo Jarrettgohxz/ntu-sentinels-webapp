@@ -5,6 +5,8 @@ import Events from "./events";
 
 import "../css/home.css";
 import "../css/header.css";
+import ConsoleTypingAnimation from "../animations/consoleTypingAnimation";
+import FlickerAnimation from "../animations/flickerAnimation";
 
 function Home() {
   const { theme, toggleTheme, logoSrc } = useTheme();
@@ -63,12 +65,30 @@ function Home() {
               </label>
             </div>
             <p id="subheading1">NTU SENTINELS</p>
-            <p id="body1">[Insert short overview]</p>
+            <p id="body1">
+              {/* [Insert short overview] */}
+              <ConsoleTypingAnimation text = "overview" className = "overview"/>
+            </p>
           </div>
 
           {/* Right section: Logo  */}
-          <div className="logo-section">
+          {/* <div className="logo-section">
             <img src={logoSrc} alt="Logo" id="logo-img" />
+          </div> */}
+          <div className="animatedSentinelLogo">
+            <div className = "flickeringLogo">
+                <FlickerAnimation className="flickering-Logo" asciiArt="splitLogo_A" minReveal={0.4} flickerDuration={900} flickerRate={60}/>
+                <FlickerAnimation className="flickering-Logo" asciiArt="splitLogo_C" minReveal={0.3} flickerDuration={800} flickerRate={40}/>
+                <FlickerAnimation className="flickering-Logo" asciiArt="splitLogo_E" minReveal={0.2} flickerDuration={600} flickerRate={50}/>
+                <FlickerAnimation className="flickering-Logo" asciiArt="splitLogo_B" minReveal={0.4} flickerDuration={600} flickerRate={50}/>
+                <FlickerAnimation className="flickering-Logo" asciiArt="splitLogo_D" minReveal={0.1} flickerDuration={800} flickerRate={70}/>
+                <FlickerAnimation className="flickering-Logo" asciiArt="splitLogo_F" minReveal={0.2} flickerDuration={900} flickerRate={70}/>
+            </div>
+            <div className = "flickeringText">
+                <FlickerAnimation className="flickering-Letters" asciiArt="splitLetter_A" minReveal={1}/>
+                <FlickerAnimation className="flickering-Letters" asciiArt="splitLetter_B" minReveal={1}/>
+                <FlickerAnimation className="flickering-Letters" asciiArt="splitLetter_C" minReveal={1}/>
+            </div>
           </div>
         </div>
       </div>

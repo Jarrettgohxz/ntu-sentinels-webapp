@@ -83,6 +83,24 @@
   border-radius: 10px;
 }
 
+/* Ascii Logo Animation Styling */
+.animatedSentinelLogo{
+  flex: auto;
+  flex-direction: column;
+}
+
+.flickeringLogo{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+}
+
+.flickeringText{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 /* Toggle switch */
 .switch {
   position: relative;

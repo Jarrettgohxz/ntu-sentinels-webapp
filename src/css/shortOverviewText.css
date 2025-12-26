@@ -1,0 +1,72 @@
+.overview{
+    overflow: hidden;
+    overflow-wrap:anywhere;
+    white-space: pre-wrap;
+    
+    font-family: "Lucida Console", sans-serif;
+    font-size: 1.2rem;
+
+    margin: auto;
+    width: 100%;
+    height: 3lh;
+    
+    color: var(--text-color);
+}
+
+.test{
+    overflow: hidden;
+    overflow-wrap:anywhere;
+    white-space: pre-wrap;
+
+    font-family: 'Lucida Console', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    
+    padding-bottom: 32px;
+    
+    margin : auto;
+    width: 100%;
+    height: 100%;
+    max-width: 750px;
+    max-height: 6lh;
+    
+    color: var(--text-color);
+}
+
+@media (max-width: 800px) {
+    .overview{
+        width: 100%;
+        height:4lh;
+        text-align:left;
+    }
+}
+
+@media (max-width: 600px) {
+    .overview{
+        width: 60%;
+        height:4lh;
+        text-align: center;
+    }
+}
+
+@media (max-width: 380px) {
+    .overview{
+        width: 60%;
+        height:fit-content;
+        text-align: center;
+    }
+}
+
+.cursorBlinker{
+    display: inline-block;
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
+}

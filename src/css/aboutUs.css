@@ -101,6 +101,10 @@
     img{
         width: 200px;
         height: 200px;
+        border-radius: 75px;
+        border: 2px solid var(--text-color);
+        padding: 1px;
+        object-fit: cover;
     }
     h1{
         font-family: 'Montserrat', sans-serif;
