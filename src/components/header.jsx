@@ -15,7 +15,8 @@ function Header() {
       ? currentPath.substring(1) // Start from the second character (index 1)
       : currentPath;
 
-    currentPath = currentPath === "" ? URL_PATH.path.home : currentPath;
+    currentPath =
+      currentPath === "" || currentPath === "/" ? "home" : currentPath;
 
     setCurrentPage(currentPath);
   }, []);
